@@ -1,6 +1,5 @@
 import re,json
 
-
 class Customer:
     custlist=[]
     page = -1
@@ -135,11 +134,11 @@ class Customer:
     def saveData(self):
         jsonString = json.dumps(self.custlist, ensure_ascii=False, indent=4)
         print(jsonString)
-        fp=open('customer/data.json','wt',encoding="utf-8")
+        fp=open('./customer/data.json','w',encoding="utf-8")
         fp.write(jsonString)
 
     def loadData(self):
-        fp=open('customer/data.json','rt',encoding="utf-8")
+        fp=open('./customer/data.json','r',encoding="utf-8")
 
         jsonString=fp.read()
        

@@ -4,19 +4,7 @@ class Customer:
     custlist=[]
     page = -1
     
-    def firstinput(self):
-        choice=input('''
-            다음 중에서 하실 일을 골라주세요 :
-            I - 고객 정보 입력
-            C - 현재 고객 정보 조회
-            P - 이전 고객 정보 조회
-            N - 다음 고객 정보 조회
-            U - 고객 정보 수정
-            D - 고객 정보 삭제
-            Q - 프로그램 종료
-            ''').upper()  
-        return choice
-
+    
     def insertData(self): 
         customer={'name':'','sex':'',"email":'',"birthyear":''}
         customer['name']=str(input("이름을 입력하세요 : "))
@@ -66,7 +54,6 @@ class Customer:
             print(self.custlist[self.page])
         else:
             print("입력된 정보가 없습니다.") 
-            
 
     def preSearch(self):
         if self.page <= 0:
@@ -129,32 +116,37 @@ class Customer:
             else:
                 print('존재하지 않는 정보입니다.')
                 break
+    def firstinput(self):
+        choice=input('''
+            다음 중에서 하실 일을 골라주세요 :
+            I - 고객 정보 입력
+            C - 현재 고객 정보 조회
+            P - 이전 고객 정보 조회
+            N - 다음 고객 정보 조회
+            U - 고객 정보 수정
+            D - 고객 정보 삭제
+            Q - 프로그램 종료
+            ''').upper()  
+        return choice
 
     def exe(self,choice):
             if choice=='I':
                 self.insertData()
-                
             elif choice=='C':
                 self.curSearch()
-            
             elif choice=='P':
                 self.preSearch()
-
             elif choice=='N':
                 self.nextSearch()
-
             elif choice=='U':
                 self.updateData()
-            
             elif choice=='D':
                 self.deleteData()
-            
             elif choice=='Q':
                 quit()
 
     def __init__(self):
         while True:
             self.exe(self.firstinput())
-
                 
 Customer()

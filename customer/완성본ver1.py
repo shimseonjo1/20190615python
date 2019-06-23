@@ -56,7 +56,7 @@ while True:
         page=len(custlist)-1   
         print(page)     
 
-    elif choice=="C": # 늘 마지막 데이타의 위치로
+    elif choice=="C": 
         if page >= 0:
             print("현재 페이지는 {}쪽 입니다".format(page + 1)) 
             print(custlist[page])
@@ -85,26 +85,25 @@ while True:
         choice1 = input('삭제하려는 고객 정보의 이메일을 입력하세요.')
         delok = 0
         for i in range(0,len(custlist)):
-            while custlist[i]['email'] == choice1:
+            if custlist[i]['email'] == choice1:
                 print('{} 고객님의 정보가 삭제되었습니다.'.format(custlist[i]['name']))
                 del custlist[i]
                 print(custlist)
                 delok = 1
                 break
-            
-            if delok == 1:
-                break
 
         if delok == 0:
                 print('등록되지 않은 이메일입니다.')
+                print(custlist)
 
     elif choice=="U": 
         while True:
-            choice1=input('수정하시려는 고객 정보의 이메일을 입력하세요 : ') # 이메일 존재 여부 체크 필요
+            choice1=input('수정하시려는 고객 정보의 이메일을 입력하세요 : ') 
             idx=-1
             for i in range(0,len(custlist)):
                 if custlist[i]['email'] == choice1:
                     idx=i
+                    break
             if idx==-1:
                 print('등록되지 않은 이메일입니다.')       
                 break

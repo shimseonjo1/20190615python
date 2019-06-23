@@ -104,16 +104,13 @@ def deleteData():
     choice1 = input('삭제하려는 고객 정보의 이메일을 입력하세요.')
     delok = 0
     for i in range(0,len(custlist)):
-        while custlist[i]['email'] == choice1:
+        if custlist[i]['email'] == choice1:
             print('{} 고객님의 정보가 삭제되었습니다.'.format(custlist[i]['name']))
             del custlist[i]
             print(custlist)
             page=len(custlist)-1   
             print(page)  
-            delok = 1
-            break
-        
-        if delok == 1:
+            delok = 1            
             break
 
     if delok == 0:
@@ -126,6 +123,7 @@ def updateData():
         for i in range(0,len(custlist)):
             if custlist[i]['email'] == choice1:
                 idx=i
+                break
         if idx==-1:
             print('등록되지 않은 이메일입니다.')       
             break
