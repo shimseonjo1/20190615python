@@ -1,4 +1,4 @@
-import re,json
+import re,pickle,os
 
 class Customer:
     custlist=[]
@@ -19,16 +19,16 @@ class Customer:
         return choice
 
     def insertData(self): 
-        customer={'name':'','sex':'',"email":'',"birthyear":''}
+        customer={'name':'','sex':'','email':'','birthyear':''}
         customer['name']=str(input("이름을 입력하세요 : "))
             
         while True:
-            customer['sex']=str(input("성별(M/m 또는 F/f)을 입력하세요 : "))
-            customer['sex']=customer['sex'].upper()
-            if customer['sex'] in ('M','F'):
-                break
-            else:
-                print('M/m 또는 F/f 중 입력해주세요')
+                customer['sex']=str(input("성별(M/m 또는 F/f)을 입력하세요 : "))
+                customer['sex']=customer['sex'].upper()
+                if customer['sex'] in ('M','F'):
+                    break
+                else:
+                    print('M/m 또는 F/f 중 입력해주세요')
 
         while True: 
             regex = re.compile('^[a-z][a-z0-9]{4,10}@[a-zA-Z]{2,6}[.][a-zA-Z]{2,3}$')
@@ -67,7 +67,6 @@ class Customer:
             print(self.custlist[self.page])
         else:
             print("입력된 정보가 없습니다.") 
-            
 
     def preSearch(self):
         if self.page <= 0:
@@ -132,20 +131,15 @@ class Customer:
                 break
 
     def saveData(self):
-        jsonString = json.dumps(self.custlist, ensure_ascii=False, indent=4)
-        print(jsonString)
-        fp=open('./customer/data.json','w',encoding="utf-8")
-        fp.write(jsonString)
-
-    def loadData(self):
-        fp=open('./customer/data.json','r',encoding="utf-8")
-
-        jsonString=fp.read()
+        with open('./customer/data.pkl','wb') as f:
+            pickle.dump(self.custlist,f)
        
-        print(jsonString)
-        self.custlist=json.loads(jsonString)
+    def loadData(self):
+        if os.path.getsize('./customer/data.pkl')>0:
+            with open('./customer/data.pkl','rb') as f:
+                self.custlist=pickle.load(f)
+                self.page=len(self.custlist)-1
 
-    
     def exe(self,choice):
             if choice=='I':
                 self.insertData()
@@ -166,7 +160,7 @@ class Customer:
                 self.deleteData()
 
             elif choice=='S':
-                self.saveData()                
+                self.saveData()    
             
             elif choice=='Q':
                 quit()
@@ -175,5 +169,5 @@ class Customer:
         self.loadData()
         while True:
             self.exe(self.firstinput())
-
+                
 Customer()
