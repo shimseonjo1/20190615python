@@ -57,49 +57,50 @@ def insertData():
             
 
     while True:
-            customer['birthyear']=input("출생년도 4자리를 입력해주세요 : ")    
-
-            try:
-                int(customer['birthyear'])
-            except:
-                print('숫자를 입력해주세요')
-            else:
-                if len(customer['birthyear'])==4:
-                    break
-                else:
-                    print('4자리로 입력해주세요')
+        customer['birthyear']=input("출생년도 4자리를 입력해주세요 : ")
+        
+        if len(customer['birthyear']) == 4 and customer['birthyear'].isdigit():
+            break
 
     print(customer)
     custlist.append(customer)
     print(custlist)
     global page
-    page += 1
+    #page += 1
+    page=len(custlist)-1   
+    print(page)  
     
 def curSearch():
-    print("현재 페이지는 {}쪽 입니다".format(page + 1)) 
-    print(custlist[page])
+    global page
+    if page >= 0:
+        print("현재 페이지는 {}쪽 입니다".format(page + 1)) 
+        print(custlist[page])
+    else:
+        print("입력된 정보가 없습니다.")    
 
 def preSearch():
     global page
     if page <= 0:
         print('첫 번 째 페이지이므로 이전 페이지 이동이 불가합니다')
-        print(custlist[page])
+        print(page)
     else:
         page -= 1
         print("현재 페이지는 {}쪽 입니다".format(page + 1))
         print(custlist[page])
+
         
 def nextSearch():
     global page
     if page >= len(custlist)-1:
         print('마지막 페이지이므로 다음 페이지 이동이 불가합니다')
-        print(custlist[page])
+        print(page)
     else:
         page += 1
         print("현재 페이지는 {}쪽 입니다".format(page + 1))
         print(custlist[page])
 
 def deleteData():
+    global page
     choice1 = input('삭제하려는 고객 정보의 이메일을 입력하세요.')
     delok = 0
     for i in range(0,len(custlist)):
@@ -107,6 +108,8 @@ def deleteData():
             print('{} 고객님의 정보가 삭제되었습니다.'.format(custlist[i]['name']))
             del custlist[i]
             print(custlist)
+            page=len(custlist)-1   
+            print(page)  
             delok = 1
             break
         
@@ -151,5 +154,5 @@ while True:
     U - 고객 정보 수정
     D - 고객 정보 삭제
     Q - 프로그램 종료
-    ''')  
+    ''').upper()  
     exe(choice)

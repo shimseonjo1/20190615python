@@ -1,52 +1,7 @@
 import re
 custlist=[]
 page=-1
-
-def insertData():
-    customer={'name':'','sex':'',"email":'',"birthyear":''}
-    customer['name']=input("이름을 입력하세요 : ")
-    while True:
-             customer['sex']=input("성별(M/m 또는 F/f)을 입력하세요 : ")
-             customer['sex']=customer['sex'].upper()
-             if customer['sex'] in ('M','F'):
-                 break
  
-    while True: # 중복되지 않게 입력
-
-        regex = re.compile('^[a-z][a-z0-9]{4,10}@[a-zA-Z]{2,6}[.][a-zA-Z]{2,3}$')
-        while True:
-            customer['email']=input("이메일을 입력하세요 : ") 
-            golbang = regex.search(customer['email'])
-            if golbang:
-                break
-            else:
-                print('"@"를 포함한 정확한 이메일을 써주세요')
-
-        check=0
-        for i in custlist:
-            if i['email']==customer['email']:
-                check=1
-        
-        if check==0:
-            break
-        print('중복되는 이메일이 있습니다.')    
-
-        while True:
-             customer['birthyear']=input("출생년도 4자리를 입력해주세요 : ")
-             
-             if len(customer['birthyear']) == 4 and customer['birthyear'].isdigit():
-
-                 break
-
-        print(customer)
-        custlist.append(customer)
-        print(custlist)
-        global page
-        page += 1     
-    
-        
-
-
 while True:
     choice=input('''
     다음 중에서 하실 일을 골라주세요 :
@@ -57,12 +12,51 @@ while True:
     U - 고객 정보 수정
     D - 고객 정보 삭제
     Q - 프로그램 종료
-    ''')  
+    ''').upper()  
 
     if choice=="I":  
-        insertData()      
+        customer={'name':'','sex':'',"email":'',"birthyear":''}
+        customer['name']=input("이름을 입력하세요 : ")
+        while True:
+                customer['sex']=input("성별(M/m 또는 F/f)을 입력하세요 : ")
+                customer['sex']=customer['sex'].upper()
+                if customer['sex'] in ('M','F'):
+                    break
+    
+        while True: # 중복되지 않게 입력
 
-    elif choice=="C":
+            regex = re.compile('^[a-z][a-z0-9]{4,10}@[a-zA-Z]{2,6}[.][a-zA-Z]{2,3}$')
+            while True:
+                customer['email']=input("이메일을 입력하세요 : ") 
+                golbang = regex.search(customer['email'])
+                if golbang:
+                    break
+                else:
+                    print('"@"를 포함한 정확한 이메일을 써주세요')
+
+            check=0
+            for i in custlist:
+                if i['email']==customer['email']:
+                    check=1
+            
+            if check==0:
+                break
+            print('중복되는 이메일이 있습니다.')    
+
+        while True:
+            customer['birthyear']=input("출생년도 4자리를 입력해주세요 : ")
+            
+            if len(customer['birthyear']) == 4 and customer['birthyear'].isdigit():
+                break
+
+        print(customer)
+        custlist.append(customer)
+        print(custlist)
+        #page += 1
+        page=len(custlist)-1   
+        print(page)     
+
+    elif choice=="C": # 늘 마지막 데이타의 위치로
         if page >= 0:
             print("현재 페이지는 {}쪽 입니다".format(page + 1)) 
             print(custlist[page])
@@ -72,7 +66,7 @@ while True:
     elif choice == 'P':
         if page <= 0:
             print('첫 번 째 페이지이므로 이전 페이지 이동이 불가합니다')
-            print(custlist[page])
+            print(page)
         else:
             page -= 1
             print("현재 페이지는 {}쪽 입니다".format(page + 1))
@@ -81,7 +75,7 @@ while True:
     elif choice == 'N':
         if page >= len(custlist)-1:
             print('마지막 페이지이므로 다음 페이지 이동이 불가합니다')
-            print(custlist[page])
+            print(page)
         else:
             page += 1
             print("현재 페이지는 {}쪽 입니다".format(page + 1))
