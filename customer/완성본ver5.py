@@ -1,4 +1,4 @@
-import re,json
+import re,json,os
 
 class Customer:
     custlist=[]
@@ -19,7 +19,7 @@ class Customer:
         return choice
 
     def insertData(self): 
-        customer={'name':'','sex':'',"email":'',"birthyear":''}
+        customer={'name':'','sex':'','email':'','birthyear':''}
         customer['name']=str(input("이름을 입력하세요 : "))
             
         while True:
@@ -131,18 +131,18 @@ class Customer:
                 break
 
     def saveData(self):
-        jsonString = json.dumps(self.custlist, ensure_ascii=False, indent=4)
-        print(jsonString)
-        fp=open('./customer/data.json','w',encoding="utf-8")
-        fp.write(jsonString)
+        with open('./customer/data.json','wt') as f:
+            jsonString = json.dumps(self.custlist,indent=4)
+            print(jsonString)
+            f.write(jsonString)
 
     def loadData(self):
-        fp=open('./customer/data.json','r',encoding="utf-8")
-
-        jsonString=fp.read()
-       
-        print(jsonString)
-        self.custlist=json.loads(jsonString)
+        if os.path.getsize('./customer/data.json')>0:
+            with open('./customer/data.json','rt') as f:
+                jsonString=json.load(f)
+                print(type(jsonString))
+                print(jsonString)
+                self.custlist=jsonString
 
     def exe(self,choice):
             if choice=='I':
@@ -162,6 +162,9 @@ class Customer:
             
             elif choice=='D':
                 self.deleteData()
+
+            elif choice=='S':
+                self.saveData()    
             
             elif choice=='Q':
                 quit()

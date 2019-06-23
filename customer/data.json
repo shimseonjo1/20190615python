@@ -1,1 +1,8 @@
-{}
+[
+    {
+        "name": "hong",
+        "sex": "M",
+        "email": "hong123@gmail.com",
+        "birthyear": "1999"
+    }
+]
