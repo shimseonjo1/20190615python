@@ -1,23 +1,9 @@
-import re,pickle,os
+import re,pickle,os,sys
 
 class Customer:
     custlist=[]
     page = -1
     
-    def firstinput(self):
-        choice=input('''
-            다음 중에서 하실 일을 골라주세요 :
-            I - 고객 정보 입력
-            C - 현재 고객 정보 조회
-            P - 이전 고객 정보 조회
-            N - 다음 고객 정보 조회
-            U - 고객 정보 수정
-            D - 고객 정보 삭제
-            S - 저장
-            Q - 프로그램 종료
-            ''').upper()  
-        return choice
-
     def insertData(self): 
         customer={'name':'','sex':'','email':'','birthyear':''}
         customer['name']=str(input("이름을 입력하세요 : "))
@@ -130,15 +116,43 @@ class Customer:
                 print('존재하지 않는 정보입니다.')
                 break
 
+    def quit(self):
+        print("프로그램을 종료합니다.")
+        self.saveData()
+        sys.exit()
+
     def saveData(self):
         with open('./customer/data.pkl','wb') as f:
             pickle.dump(self.custlist,f)
        
     def loadData(self):
-        if os.path.getsize('./customer/data.pkl')>0:
+        #파일 크기가 0보다 클 경우에  읽어옴.
+        #if os.path.getsize('./customer/data.pkl')>0: 
+        #파일이 존재할 경우에 읽어옴.
+        if os.path.exists('./customer/data.pkl'):    
             with open('./customer/data.pkl','rb') as f:
                 self.custlist=pickle.load(f)
                 self.page=len(self.custlist)-1
+
+    def fullSearch(self):
+        print("- 전체 고객 리스트 -")
+        for i in self.custlist:
+            print(i)
+
+    def firstinput(self):
+            choice=input('''
+                다음 중에서 하실 일을 골라주세요 :
+                I - 고객 정보 입력
+                C - 현재 고객 정보 조회
+                P - 이전 고객 정보 조회
+                N - 다음 고객 정보 조회
+                F - 전체 고객 정보 조회
+                U - 고객 정보 수정
+                D - 고객 정보 삭제
+                S - 저장
+                Q - 프로그램 종료
+                ''').upper()  
+            return choice
 
     def exe(self,choice):
             if choice=='I':
@@ -153,6 +167,9 @@ class Customer:
             elif choice=='N':
                 self.nextSearch()
 
+            elif choice=='F':
+                self.fullSearch()
+
             elif choice=='U':
                 self.updateData()
             
@@ -163,7 +180,7 @@ class Customer:
                 self.saveData()    
             
             elif choice=='Q':
-                quit()
+                self.quit()
 
     def __init__(self):
         self.loadData()
