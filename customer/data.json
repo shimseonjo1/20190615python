@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
     {
         "name": "hong",
@@ -5,4 +6,13 @@
         "email": "hong123@gmail.com",
         "birthyear": "1999"
     }
+=======
+[
+    {
+        "name": "hong",
+        "sex": "M",
+        "email": "hong123@gmail.com",
+        "birthyear": "1999"
+    }
+>>>>>>> bb897273891b75e8fd0cf40a5d6545ecd2f534cf
 ]

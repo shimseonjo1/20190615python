@@ -1,4 +1,4 @@
-import re
+import re,sys
 
 class Customer:
     custlist=[]
@@ -116,6 +116,12 @@ class Customer:
             else:
                 print('존재하지 않는 정보입니다.')
                 break
+
+    def quit(self):
+        print("프로그램을 종료합니다.")
+        sys.exit()
+        
+
     def firstinput(self):
         choice=input('''
             다음 중에서 하실 일을 골라주세요 :
@@ -143,7 +149,7 @@ class Customer:
             elif choice=='D':
                 self.deleteData()
             elif choice=='Q':
-                quit()
+                self.quit()
 
     def __init__(self):
         while True:
