@@ -1,0 +1,9 @@
+{% extends 'default.html' %}
+{% block body %}
+<h1>{{name}}</h1>
+<ul>
+    {% for team in team_list %}
+    <li>{{team}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
