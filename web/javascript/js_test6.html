@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+var fruits = new Array();
+fruits["a"] ="사과";
+fruits["b"] ="바나나";
+fruits["c"] ="오렌지";
+//var fruits =["Apple","Banana","Orange"];
+
+//숫자인덱스일때
+for(i=0;i<=fruits.length;i++){
+	document.write(fruits[i]+"<br>");
+}
+//숫자인경우나 숫자인덱스가 아닐경우 
+for(var f in fruits){ //인덱스만 넘어감....
+	document.write(fruits[f]+"<br>");
+}
+
+document.write(fruits["a"]+"<br>");
+document.write(fruits["b"]+"<br>");
+document.write(fruits["c"]+"<br>");
+</script>
+</head>
+<body>
+
+</body>
+</html>
+

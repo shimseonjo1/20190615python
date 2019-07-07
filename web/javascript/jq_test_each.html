@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <title>each연습</title>
+    </head>
+    <body>
+        <script>
+            $(function(){
+                $("li").each(function(i,k){
+                    $(k).text("인덱스-"+i);
+                });
+            });
+        </script>
+
+        <li>사과</li>
+        <li>사과</li>
+        <li>사과</li>
+        <li>사과</li>
+        <li>사과</li>
+        <li>사과</li>
+
+    </body>
+</html>
