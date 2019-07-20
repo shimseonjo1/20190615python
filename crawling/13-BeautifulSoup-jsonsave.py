@@ -11,9 +11,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 req = requests.get('https://beomi.github.io/beomi.github.io_old/')
 html = req.text
 soup = BeautifulSoup(html, 'html.parser')
-my_titles = soup.select(
-    'h3 > a'
-    )
+my_titles = soup.select('h3 > a')
 
 data = {}
 

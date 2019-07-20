@@ -1,5 +1,4 @@
-import urllib.request
-import os
+import urllib.request,os
 
 #이미지의 주소
 url='https://i-h2.pinimg.com/474x/ac/b9/eb/acb9eb2a70dd9c342c90598a5f20bf72.jpg?b=t'
@@ -8,9 +7,10 @@ url='https://i-h2.pinimg.com/474x/ac/b9/eb/acb9eb2a70dd9c342c90598a5f20bf72.jpg?
 dirname=os.path.dirname(__file__)
 savename=dirname +'/test.png'
 
-# 파일로 저장
+# 파일을 다운로드 받아 바로 파일로 저장
 urllib.request.urlretrieve(url,savename)
 
+'''
 # 파일을 열고.. 활용 할수 있다.
 mem = urllib.request.urlopen(url).read()
 
@@ -20,3 +20,4 @@ print(savename)
 with open(savename,mode='wb') as f:
     f.write(mem)
     print('저장되었습니다.')
+'''
