@@ -1,0 +1,16 @@
+cat
+dog
+fox
+monkey
+mouse
+panda
+frog
+snake
+wolf
+곰
+사자
+강아지
+고양이
+쥐
+오리
+개구리

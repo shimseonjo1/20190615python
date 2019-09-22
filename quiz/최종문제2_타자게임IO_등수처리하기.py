@@ -7,7 +7,7 @@ rank={}
 def sortV(x):
     return x[1]
 
-f = open('rank.txt', 'r')
+f = open('rank.txt', 'r',encoding='UTF8')
 line = 1
 while line:
     line = f.readline().replace("\n", "")
@@ -19,7 +19,7 @@ while True:
    print("1.문제불러오기  2.타자게임  3.등수목록  4.종료하기")
    menu = input("메뉴를 선택하세요\n")
    if menu=='1':
-       f=open('word.txt','r')
+       f=open('word.txt','r',encoding='UTF8')
        line = 1
        w.clear()
        while line:
@@ -58,11 +58,11 @@ while True:
    elif menu=='4':
        answer = input('정말 종료하시겠습니까?(Y)')
        if answer == 'Y' or answer=='y':
-           break;
+           break
    else:
        print("메뉴를 잘못 선택하셨습니다.")
 
-f = open('rank.txt', 'w')
+f = open('rank.txt', 'w',encoding='UTF8')
 text = ''
 items = rank.items()
 for k, v in items:

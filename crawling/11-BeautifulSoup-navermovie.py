@@ -1,11 +1,11 @@
 import urllib
-import requests
 from bs4 import BeautifulSoup
 
 params=urllib.parse.urlencode({'page':1})
 url='https://movie.naver.com/movie/point/af/list.nhn?&%s' %params
 print(url)
 
+#import requests
 #params={'page':1}
 #url='https://movie.naver.com/movie/point/af/list.nhn'
 #res=requests.get(url,params=params)

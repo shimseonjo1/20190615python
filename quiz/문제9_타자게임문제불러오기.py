@@ -5,7 +5,7 @@ while True:
    print("1.문제불러오기  2.타자게임  3.종료하기")
    menu = input("메뉴를 선택하세요\n")
    if menu=='1':
-      f=open('./python_basic/word.txt','r')
+      f=open('./python_basic/word.txt','r',encoding='UTF8')
       line = 1
       #w.clear() 기존문제 제거하고 추가하기
       while line:
@@ -15,12 +15,11 @@ while True:
       print(w)
    elif menu=='2':
       n=1
-      print("[타자 게임]준비되면 엔터!")
-      input()
-      start=time.time()
       q=random.choice(w)
+      input('시작!')
+      start = time.time()
       while n<=5:
-         print("*문제",n)
+         print("{}번".format(n))
          print(q)
          x=input()
          if q ==x:
@@ -28,11 +27,9 @@ while True:
             n=n+1
             q=random.choice(w)
          else:
-            print("오타! 다시도전!")
-      end =time.time()
-      et=end-start
-      et=format(et,".2f")
-      print("타자 시간 : ",et,"초")
+            print("오타! 다시도전!")  
+      end= time.time()
+      print('타자 시간 : {:.0f}초'.format(end-start))        
    elif menu=='3':
       break
 

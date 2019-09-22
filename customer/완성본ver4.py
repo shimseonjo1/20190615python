@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import re,pickle,os
-=======
 import re,pickle,os,sys
->>>>>>> bb897273891b75e8fd0cf40a5d6545ecd2f534cf
 
 class Customer:
     custlist=[]
@@ -120,25 +116,16 @@ class Customer:
                 print('존재하지 않는 정보입니다.')
                 break
 
-<<<<<<< HEAD
-=======
     def quit(self):
         print("프로그램을 종료합니다.")
         self.saveData()
         sys.exit()
 
->>>>>>> bb897273891b75e8fd0cf40a5d6545ecd2f534cf
     def saveData(self):
         with open('./customer/data.pkl','wb') as f:
             pickle.dump(self.custlist,f)
        
     def loadData(self):
-<<<<<<< HEAD
-        if os.path.getsize('./customer/data.pkl')>0:
-            with open('./customer/data.pkl','rb') as f:
-                self.custlist=pickle.load(f)
-                self.page=len(self.custlist)-1
-=======
         #파일 크기가 0보다 클 경우에  읽어옴.
         #if os.path.getsize('./customer/data.pkl')>0: 
         #파일이 존재할 경우에 읽어옴.
@@ -166,7 +153,6 @@ class Customer:
                 Q - 프로그램 종료
                 ''').upper()  
             return choice
->>>>>>> bb897273891b75e8fd0cf40a5d6545ecd2f534cf
 
     def exe(self,choice):
             if choice=='I':

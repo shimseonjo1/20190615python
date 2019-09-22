@@ -1,6 +1,4 @@
-import random
-import time
-import os
+import random,time,os
 
 w=["cat","dog","fox","monkey","mouse","panda","frog","snake","wolf"]
 rank={}
@@ -11,7 +9,7 @@ while True:
    print("1.문제불러오기  2.타자게임  3.등수목록  4.저장하기  5.불러오기")
    menu = input("메뉴를 선택하세요\n")
    if menu=='1':
-       f=open('word.txt','r')
+       f=open('word.txt','r',encoding='UTF8')
        line = 1
        w.clear()
        while line:
@@ -48,7 +46,7 @@ while True:
            print("%d등 %s %f" %(num,k,v))
            num = num+1
    elif menu=='4':
-       f=open('rank.txt','w')
+       f=open('rank.txt','w',encoding='UTF8')
        text=''
        items=rank.items()
        for k,v in items:
@@ -56,7 +54,7 @@ while True:
        f.writelines(text)
        f.close()
    elif menu=='5':
-       f=open('rank.txt','r')
+       f=open('rank.txt','r',encoding='UTF8')
        line = 1
        while line:
            line = f.readline().replace("\n", "")
